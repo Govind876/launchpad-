@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Submit Video Pitch - Startup Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-lg bg-white rounded-xl shadow-lg p-8">
+    <h1 class="text-2xl font-bold text-center text-indigo-700 mb-6">Submit Video Pitch</h1>
+    <form id="videoPitchForm">
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-1" for="videoTitle">Video Title</label>
+        <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" type="text" id="videoTitle" placeholder="Enter video title" required>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-1" for="videoFile">Upload Video</label>
+        <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" type="file" id="videoFile" accept="video/*">
+        <p class="text-xs text-gray-500 mt-1">Or upload to YouTube and provide the link below.</p>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 mb-1" for="youtubeLink">YouTube Link</label>
+        <input class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400" type="url" id="youtubeLink" placeholder="Paste YouTube link (if applicable)">
+      </div>
+      <button type="submit" class="w-full bg-indigo-600 text-white py-2 rounded-lg font-semibold hover:bg-indigo-700 transition mb-3">
+        Submit Video Pitch
+      </button>
+    </form>
+    <div id="videoConfirmation" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-lg text-center">
+      <i class="fas fa-check-circle mr-2"></i>Video pitch submitted successfully!
+    </div>
+  </div>
+  <script>
+    document.getElementById('videoPitchForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const videoFileInput = document.getElementById('videoFile');
+      const youtubeLinkInput = document.getElementById('youtubeLink');
+      if (!videoFileInput.value && !youtubeLinkInput.value.trim()) {
+        alert('Please upload a video file or provide a YouTube link.');
+        return;
+      }
+      document.getElementById('videoConfirmation').classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('videoConfirmation').classList.add('hidden');
+        document.getElementById('videoPitchForm').reset();
+        window.location.href = 'mentor-dashboard.html';
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

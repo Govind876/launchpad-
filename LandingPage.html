@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Futuristic Startup Landing Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      overflow-x: hidden;
+      color: #333333;
+    }
+    /* Hero text slide-in animation */
+    @keyframes slideIn {
+      0% {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    /* Parallax slow movement for background shapes */
+    @keyframes slowMove {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(20px);
+      }
+    }
+    /* Pulse animation for CTA */
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 0.85;
+      }
+    }
+    /* Background shapes */
+    .bg-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+      animation: slowMove 30s ease-in-out infinite alternate;
+    }
+    .shape1 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle at center, #a1c4fd, transparent);
+      top: 10%;
+      left: -150px;
+      animation-delay: 0s;
+    }
+    .shape2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle at center, #c2e9fb, transparent);
+      top: 50%;
+      right: -200px;
+      animation-delay: 15s;
+    }
+    .shape3 {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle at center, #fbc7a4, transparent);
+      bottom: 10%;
+      left: 20%;
+      animation-delay: 7s;
+    }
+  </style>
+</head>
+  <body class="relative min-h-screen text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Background shapes for parallax effect -->
+    <div class="bg-shape shape1"></div>
+    <div class="bg-shape shape2"></div>
+    <div class="bg-shape shape3"></div>
+
+    <!-- Logo and Portal Name -->
+    <header class="flex items-center justify-between py-6 px-8 space-x-6 bg-white bg-opacity-20 backdrop-blur-md fixed top-0 left-0 right-0 z-20 animate-[slideDown_1s_ease-out_forwards] opacity-0 bg-cover bg-center" style="background-image: url('header-bg1.jpg'), url('header-bg2.jpg'); background-repeat: no-repeat, no-repeat; background-position: left center, right center;">
+      <div class="flex items-center space-x-4">
+        <img src="logo.png" alt="Launchpad Speech Portal Logo" class="h-16 w-auto animate-[glow_3s_ease-in-out_infinite]" />
+        <h1 id="portalTitle" class="text-4xl font-extrabold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-[colorShift_5s_linear_infinite]">
+          Launchpad Speech Portal
+        </h1>
+      </div>
+     
+        <select id="languageSelector" aria-label="Select Language" class="bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded px-2 py-1 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+        </select>
+      </div>
+    </header>
+    <style>
+      @keyframes slideDown {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes glow {
+        0%, 100% {
+          filter: drop-shadow(0 0 5px #7c3aed);
+        }
+        50% {
+          filter: drop-shadow(0 0 15px #a78bfa);
+        }
+      }
+      @keyframes colorShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+    </style>
+    <script>
+      const translations = {
+        en: {
+          portalTitle: "Launchpad Speech Portal",
+          getStarted: "Get Started",
+          learnMore: "Learn More",
+          whyChooseUs: "Why Choose Us?",
+          fastScalable: "Fast & Scalable",
+          secureReliable: "Secure & Reliable",
+          customizable: "Customizable",
+          readyToTransform: "Ready to transform your business?",
+          joinUsToday: "Join Us Today"
+        },
+        es: {
+          portalTitle: "Portal de Discursos Launchpad",
+          getStarted: "Comenzar",
+          learnMore: "Aprender Más",
+          whyChooseUs: "¿Por qué elegirnos?",
+          fastScalable: "Rápido y Escalable",
+          secureReliable: "Seguro y Confiable",
+          customizable: "Personalizable",
+          readyToTransform: "¿Listo para transformar tu negocio?",
+          joinUsToday: "Únete Hoy"
+        }
+      };
+
+      function setLanguage(lang) {
+        document.getElementById('portalTitle').textContent = translations[lang].portalTitle;
+        document.querySelector('a[href="#features"]').textContent = translations[lang].getStarted;
+        document.querySelector('a[href="#learn-more"]').textContent = translations[lang].learnMore;
+        document.querySelector('#features h2').textContent = translations[lang].whyChooseUs;
+        const featureTitles = document.querySelectorAll('#features h3');
+        featureTitles[0].textContent = translations[lang].fastScalable;
+        featureTitles[1].textContent = translations[lang].secureReliable;
+        featureTitles[2].textContent = translations[lang].customizable;
+        document.querySelector('#learn-more h2').textContent = translations[lang].readyToTransform;
+        document.querySelector('#learn-more a').textContent = translations[lang].joinUsToday;
+      }
+
+      const languageSelector = document.getElementById('languageSelector');
+      languageSelector.addEventListener('change', (e) => {
+        setLanguage(e.target.value);
+        localStorage.setItem('language', e.target.value);
+      });
+
+      // Initialize language based on saved preference or default to English
+      const savedLang = localStorage.getItem('language') || 'en';
+      languageSelector.value = savedLang;
+      setLanguage(savedLang);
+    </script>
+
+    <style>
+      @keyframes slideDown {
+        0% {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+
+    <!-- Hero Section -->
+    <section class="flex flex-col justify-center items-center min-h-screen px-6 text-center relative z-10 pt-24">
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-6 animate-[slideIn_1.2s_ease-out_forwards] opacity-0">
+        Empower Your Future with <span class="text-indigo-500 animate-[pulse_3s_ease-in-out_infinite]">Next-Gen Tech</span>
+      </h1>
+      <p class="max-w-xl text-lg md:text-xl mb-10 opacity-80 animate-[slideIn_1.5s_ease-out_forwards] opacity-0">
+        Innovative SaaS solutions designed to accelerate your startup's growth and success.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-6">
+        <a href="#features" class="px-8 py-4 bg-indigo-400 rounded-full font-semibold text-lg shadow-lg hover:bg-indigo-500 transition transform hover:-translate-y-1">
+          Get Started
+        </a>
+        <a href="#learn-more" class="px-8 py-4 border border-indigo-400 rounded-full font-semibold text-lg hover:bg-indigo-500 hover:text-white transition transform hover:-translate-y-1">
+          Learn More
+        </a>
+      </div>
+    </section>
+
+  <!-- Features Section -->
+  <section id="features" class="bg-gradient-to-b from-indigo-700 to-indigo-600 py-20 px-6 text-center">
+    <h2 class="text-4xl font-bold mb-12">Why Choose Us?</h2>
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div class="bg-indigo-500 rounded-xl p-8 shadow-lg hover:shadow-xl transition">
+        <div class="text-6xl mb-4 animate-[slideIn_1s_ease-out_forwards]">🚀</div>
+        <h3 class="text-2xl font-semibold mb-2">Fast & Scalable</h3>
+        <p>Our platform scales with your business, ensuring performance and reliability.</p>
+      </div>
+      <div class="bg-indigo-500 rounded-xl p-8 shadow-lg hover:shadow-xl transition">
+        <div class="text-6xl mb-4 animate-[slideIn_1.2s_ease-out_forwards]">🔒</div>
+        <h3 class="text-2xl font-semibold mb-2">Secure & Reliable</h3>
+        <p>We prioritize your data security with industry-leading protocols.</p>
+      </div>
+      <div class="bg-indigo-500 rounded-xl p-8 shadow-lg hover:shadow-xl transition">
+        <div class="text-6xl mb-4 animate-[slideIn_1.4s_ease-out_forwards]">⚙️</div>
+        <h3 class="text-2xl font-semibold mb-2">Customizable</h3>
+        <p>Flexible solutions tailored to your unique business needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="learn-more" class="py-20 px-6 text-center bg-gradient-to-t from-indigo-700 to-indigo-600">
+    <h2 class="text-4xl font-bold mb-6">Ready to transform your business?</h2>
+    <a href="index.html" class="inline-block px-12 py-5 bg-indigo-400 rounded-full font-extrabold text-xl shadow-lg animate-[pulse_2s_ease-in-out_infinite] hover:bg-indigo-500 transition">
+      Join Us Today
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 text-center text-indigo-400 opacity-70">
+    &copy; 2024 Futuristic Startup. All rights reserved.
+  </footer>
+</body>
+</html>

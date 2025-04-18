@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Logout - Launchpad Speech Portal</title>
+  <script>
+    // Clear session and redirect to login
+    sessionStorage.removeItem('loggedInUser');
+    window.location.href = 'login.html';
+  </script>
+</head>
+<body>
+  <p>Logging out...</p>
+</body>
+</html>
